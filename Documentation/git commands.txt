@@ -1,1 +1,14 @@
 git add .
+git commit -m "initial commit"
+git remote add origin  https://github.com/anandpanure/blockchain-elections.git 
+git remote -v
+git push origin main
+
+
+
+git clone https://github.com/anandpanure/blockchain-elections.git 
+
+
+docker build -t aspnetcorewebapiimage -f Dockerfile2 .
+docker images
+docker run -d -p 49153:80 --name aspnetcorewebapicontainer aspnetcorewebapiimage

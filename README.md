@@ -3,7 +3,7 @@
 
 **Blockchain based Electronic Voting System**
 
-*Abstract
+*Abstract*
 With an emergence of distributed ledgertechnology, decentralization and integrity ininformation storage offer an opportunity to preservedata in electronic voting systems. An inevitablechallenge in e-voting system implementation is thetradeoff between system security and generality indesign. Leveraging container technology along withblockchain technology, this paper proposes a systemdesign architecture to deliver data security and agilitin system integration. The design was further analyzedand assessed by measuring the utilization of computingresources and conducting performance test as tovalidate that the aforementioned requirements weremet..
 
 **In this project we will be aiming to address the following:-**
