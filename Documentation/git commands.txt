@@ -6,9 +6,44 @@ git push origin main
 
 
 
+https://docs.aws.amazon.com/prescriptive-guidance/latest/patterns/run-an-asp-net-core-web-api-docker-container-on-an-amazon-ec2-linux-instance.html
+
+sudo su
+Install docker
+yum install -y docker
+service docker start
+docker info
+
+yum install git -y
 git clone https://github.com/anandpanure/blockchain-elections.git 
+cd blockchain-elections/UserRegistration/UserRegistration
+docker build -t aspnetcorewebapiimage -f Dockerfile2 .
 
-
+sudo su
+sudo rm -r blockchain-elections
+git clone https://github.com/anandpanure/blockchain-elections.git 
+cd blockchain-elections/UserRegistration/UserRegistration
 docker build -t aspnetcorewebapiimage -f Dockerfile2 .
 docker images
 docker run -d -p 49153:80 --name aspnetcorewebapicontainer aspnetcorewebapiimage
+docker run -d -p 80:80 --name aspnetcorewebapicontainer aspnetcorewebapiimage
+
+docker container ls -a
+
+docker exec <containerId> stop
+docker container stop aspnetcorewebapicontainer
+docker rm aspnetcorewebapicontainer
+
+curl -X GET "http://localhost:49153/WeatherForecast" -H  "accept: text/plain"
+curl  -v -X GET "http://localhost:49153/WeatherForecast" -H  "accept: text/plain"
+curl -v  "http://localhost:49153/WeatherForecast" -H  "accept: text/plain"
+curl -i "http://localhost:49153/WeatherForecast" -H  "accept: text/plain"
+curl -v  "http://localhost:80/WeatherForecast" -H  "accept: text/plain"
+
+13.56.164.153
+
+
+sudo lsof -i -P -n | grep LISTEN
+
+docker ps
+docker exec -it aspnetcorewebapicontainer /bin/bash
