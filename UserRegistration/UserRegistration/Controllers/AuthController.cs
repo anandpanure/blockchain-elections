@@ -8,6 +8,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace UserRegistration.Controllers
 {
@@ -49,9 +50,9 @@ namespace UserRegistration.Controllers
                 return BadRequest("Wrong Password");
             }
 
-            //string token = CreateToken(user);
+            string token = CreateToken(user);
 
-            return Ok("My Token");
+            return Ok(token);
 
         }
 
@@ -59,12 +60,24 @@ namespace UserRegistration.Controllers
         {
             List<Claim> claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name,user.UserName)
+                new Claim("UserName",user.UserName),
+                new Claim("Public Key","This is my public token")
             };
 
-            var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(user.UserName));
+            var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(
+                _configuration.GetSection("AppSettings:Token").Value));
 
-            return string.Empty;
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
+
+            var token = new JwtSecurityToken(
+                claims: claims,
+                expires: DateTime.Now.AddDays(1),
+                signingCredentials: creds
+                );
+
+            var jwt = new JwtSecurityTokenHandler().WriteToken(token);
+       
+            return jwt;
         }
 
         private void CreatePasswordHash(string Password, out byte[] PasswordHash, out byte[] PasswordSalt)
