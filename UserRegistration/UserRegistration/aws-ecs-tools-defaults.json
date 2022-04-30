@@ -1,0 +1,9 @@
+
+{
+    "region" : "us-west-1",
+    "profile" : "default",
+    "configuration" : "Release",
+    "image-tag"     : "userregistration:latest",
+    "docker-build-working-dir" : "",
+    "vstoolkit-deployment-mode" : "PushOnly"
+}

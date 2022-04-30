@@ -61,7 +61,7 @@ namespace UserRegistration.Controllers
             List<Claim> claims = new List<Claim>
             {
                 new Claim("UserName",user.UserName),
-                new Claim("Public Key","This is my public token")
+                new Claim("Public Address","0x8bA732B9D806b862Ea76c63Fb5C2B8FD5CdcbCa3")
             };
 
             var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(
